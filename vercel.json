@@ -1,0 +1,36 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "src/pages/index.tsx",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "src/pages/Task1.tsx",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/src/pages/index.tsx",
+        "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        }
+      },
+      {
+        "src": "/Task1",
+        "dest": "/src/pages/Task1.tsx",
+        "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        }
+      }
+    ]
+  }
+  
