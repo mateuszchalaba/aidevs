@@ -19,21 +19,33 @@ const Task1 = () => {
         setMessage('Błąd: Nie można znaleźć dwóch ciągów znaków');
         return;
       }
-
+      console.log(stringsArray.slice(0, 2));
+      console.log(process.env.NEXT_PUBLIC_KEY);
+      console.log(JSON.stringify({
+        task: 'POLIGON',
+        apikey: process.env.NEXT_PUBLIC_KEY, // Podaj tutaj swój klucz API
+        answer: stringsArray.slice(0, 2), // Używamy pierwszych dwóch ciągów
+      }));
       // Krok 2: Wyślij POST request z tymi danymi
       const response = await fetch('https://poligon.aidevs.pl/verify', {
         method: 'POST',
+        
         headers: {
-          'Content-Type': 'application/json',
-        },
+          "Access-Control-Allow-Headers" : "Content-Type",
+           "Access-Control-Allow-Origin": "*",
+         'Content-Type': 'application/json',
+          "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PATCH"
+     },
         body: JSON.stringify({
           task: 'POLIGON',
           apikey: process.env.NEXT_PUBLIC_KEY, // Podaj tutaj swój klucz API
           answer: stringsArray.slice(0, 2), // Używamy pierwszych dwóch ciągów
         }),
       });
-
+      console.log(response);
+      console.log(response.body);
       const result = await response.json();
+      console.log(result);
 
       // Wyświetl wynik na stronie
       if (response.ok) {
